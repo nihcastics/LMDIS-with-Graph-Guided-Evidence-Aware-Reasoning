@@ -1,0 +1,10 @@
+{
+    "python.analysis.extraPaths": [
+        "./",
+        "./backend",
+        "./backend/app",
+        "./backend/app/modules",
+        "./backend/app/utils"
+    ],
+    "python.linting.pylanceEnabled": true
+}

@@ -1,0 +1,14 @@
+fastapi
+uvicorn
+paddleocr
+paddlepaddle
+opencv-python
+pillow
+numpy
+sentence-transformers
+faiss-cpu
+networkx
+python-multipart
+PyMuPDF
+pdfplumber
+openai
