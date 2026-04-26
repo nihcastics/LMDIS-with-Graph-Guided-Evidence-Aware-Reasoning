@@ -1,0 +1,544 @@
+\documentclass[11pt,a4paper]{article}
+
+% Package imports
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{tikz}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{fontspec}
+
+% Page geometry
+\geometry{
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+}
+
+% Color definitions
+\definecolor{primary}{RGB}{0, 102, 204}
+\definecolor{secondary}{RGB}{0, 150, 136}
+\definecolor{accent}{RGB}{238, 76, 44}
+\definecolor{darkgray}{RGB}{64, 64, 64}
+\definecolor{lightgray}{RGB}{240, 240, 240}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    filecolor=primary,
+    urlcolor=primary,
+    citecolor=primary,
+    pdftitle={LMDIS: Lossless Multimodal Document Intelligence System},
+    pdfauthor={Sachin S and Ayush Raj},
+    pdfsubject={Graph Guided Evidence Aware Reasoning for Enterprise Document Intelligence},
+    pdfkeywords={Document Intelligence, Knowledge Graphs, NLP, AI, Machine Learning}
+}
+
+% Header and footer
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{primary}{\small LMDIS Project Overview}}
+\fancyhead[R]{\textcolor{darkgray}{\small \thepage\ of \pageref{LastPage}}}
+\fancyfoot[C]{\textcolor{darkgray}{\tiny Copyright \textcopyright\ 2026 Sachin S and Ayush Raj. Licensed under GPL 3.0.}}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% Title formatting
+\titleformat{\section}
+    {\Large\bfseries\color{primary}}
+    {\thesection}{1em}{}
+    [\titlerule]
+
+\titleformat{\subsection}
+    {\large\bfseries\color{secondary}}
+    {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+    {\normalsize\bfseries\color{darkgray}}
+    {\thesubsubsection}{1em}{}
+
+% Spacing
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Title page
+\title{
+    \vspace{2cm}
+    \textcolor{primary}{\Huge\textbf{LMDIS}}\\[0.5cm]
+    \textcolor{darkgray}{\Large Lossless Multimodal Document Intelligence System}\\[1cm]
+    \textcolor{secondary}{\Large Graph Guided Evidence Aware Reasoning}\\[0.5cm]
+    \textcolor{secondary}{\Large for Enterprise Document Intelligence}\\[2cm]
+    \rule{\textwidth}{2pt}\\[1cm]
+    \textcolor{darkgray}{\large Project Overview and Technical Documentation}\\[2cm]
+}
+
+\author{
+    \textbf{Sachin S} \quad and \quad \textbf{Ayush Raj}\\[0.3cm]
+    \textcolor{darkgray}{Capstone Project 2026}\\[0.3cm]
+    \textcolor{darkgray}{\small sachin.shiva1612@gmail.com \quad | \quad ayushraj0901@gmail.com}
+}
+
+\date{
+    \textcolor{darkgray}{April 2026}\\[0.3cm]
+    \textcolor{darkgray}{\small Version 1.0}
+}
+
+\begin{document}
+
+% Title page
+\maketitle
+\thispagestyle{empty}
+
+% Copyright page
+\clearpage
+\thispagestyle{empty}
+\vspace*{\fill}
+\begin{center}
+    \textcolor{darkgray}{\textbf{Copyright \textcopyright\ 2026 Sachin S and Ayush Raj}}\\[1cm]
+    
+    \parbox{0.8\textwidth}{
+        \textcolor{darkgray}{This document is part of the LMDIS (Lossless Multimodal Document Intelligence System) project, licensed under the GNU General Public License Version 3 (GPL 3.0).}\\[0.5cm]
+        
+        \textcolor{darkgray}{You are free to use, modify, and distribute this software under the terms of the GNU GPL 3.0 license. For complete license text, visit \url{https://www.gnu.org/licenses/gpl-3.0.html}}\\[1cm]
+        
+        \textcolor{darkgray}{\textbf{Repository:} \url{https://github.com/nihcastics/LMDIS-with-Graph-Guided-Evidence-Aware-Reasoning}}\\[1cm]
+        
+        \textcolor{darkgray}{All trademarks and product names referenced are the property of their respective owners.}
+    }
+\end{center}
+\vspace*{\fill}
+
+% Table of Contents
+\clearpage
+\tableofcontents
+\thispagestyle{fancy}
+
+% Executive Summary
+\clearpage
+\section{Executive Summary}
+
+LMDIS is an enterprise-grade document intelligence platform that addresses the critical challenge of extracting, structuring, and retrieving information from complex multimodal documents without data loss. The system combines lossless parsing techniques, graph-based knowledge representation, semantic retrieval, and evidence-grounded response generation to deliver traceable and accurate document analytics.
+
+The platform ingests PDF documents in any format (digital, scanned, or hybrid), performs comprehensive content extraction preserving layout hierarchy and visual elements, constructs semantically enriched knowledge graphs, and serves natural language queries through a dual-path reasoning architecture that ensures factual accuracy through citation-backed responses.
+
+\textbf{Key Achievement:} A production-ready 21-module deterministic pipeline that transforms complex multimodal documents into queryable knowledge graphs with evidence-grounded, citation-accurate answers.
+
+% System Architecture
+\clearpage
+\section{System Architecture}
+
+\subsection{Overview}
+
+The LMDIS architecture consists of two major pipeline stages: Document Ingestion and Processing, and Query and Response Generation. The system processes documents through 21 specialized modules, each responsible for a specific aspect of document understanding and knowledge extraction.
+
+\subsection{Document Processing Pipeline}
+
+The document processing pipeline executes through four distinct stages:
+
+\textbf{Stage 1: Document Ingestion and Parsing (M1-M6)}
+
+Documents are registered with cryptographic fingerprinting, classified by type (digital, scanned, or mixed), and processed through lossless content extraction that preserves text, tables, images, and layout structure.
+
+\textbf{Stage 2: Semantic Processing and Graph Construction (M7-M9b)}
+
+A knowledge graph is constructed using NetworkX with 15+ edge types, enriched with semantic metadata, and indexed with 1024-dimensional embeddings for efficient retrieval.
+
+\textbf{Stage 3: Knowledge Extraction and Evidence Graph (M10-M11, LLM-K)}
+
+Claims are extracted using rule-based methods, integrated into an evidence graph with inter-claim relationships, and supplemented with LLM-derived knowledge for comprehensive query resolution.
+
+\textbf{Stage 4: Indexing and Storage}
+
+All processed data is serialized and stored in per-document isolated storage, enabling individual document management without cross-contamination.
+
+\subsection{Query and Retrieval System}
+
+The query pipeline implements a sophisticated multi-stage retrieval and dual-path answer generation:
+
+\begin{enumerate}[leftmargin=*]
+    \item \textbf{Query Interpretation (M12):} Intent detection and sub-claim decomposition
+    \item \textbf{Multi-Strategy Retrieval (M13-15):} Bi-encoder search, graph traversal, cross-encoder re-ranking
+    \item \textbf{Dual-Path Generation:} Evidence-bound answers (M16-19) and LLM Knowledge Store (Path B)
+    \item \textbf{Answer Selection Layer (ASL):} Multi-signal scoring and arbitration
+    \item \textbf{Formatting (M20):} Citation linking and confidence scoring
+    \item \textbf{Suggestions (M21):} Context-aware follow-up questions
+\end{enumerate}
+
+% Module Inventory
+\clearpage
+\section{Module Inventory}
+
+The system comprises 21 specialized modules organized into logical processing stages:
+
+\begin{longtable}{@{}llp{4cm}p{4cm}@{}}
+\toprule
+\textbf{Module} & \textbf{Name} & \textbf{Function} & \textbf{Key Outputs} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Module} & \textbf{Name} & \textbf{Function} & \textbf{Key Outputs} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+\bottomrule
+\endlastfoot
+
+M1 & Ingestion & Immutable source registration with SHA-256 fingerprinting & Document ID, checksum, metadata \\
+M2 & Page Type Classifier & Classifies pages as digital, scanned, or mixed & Page type labels \\
+M3 & Content Extraction & Lossless text, table, and image extraction & Raw text, tables, images \\
+M4 & Line Memory & Line-level normalization and paragraph detection & Normalized text segments \\
+M5 & Structure Detection & Hierarchical section and heading recognition & Document hierarchy \\
+M6 & Normalization & Component-level normalization & Normalized components \\
+M7 & Graph Construction & NetworkX DiGraph with 15+ edge types & Knowledge graph \\
+M8 & Confidence Annotation & Per-node OCR confidence scoring & Confidence metadata \\
+M9 & Embedding Generation & 1024-dimensional embeddings with FAISS & Vector embeddings, FAISS index \\
+M9b & Semantic Enrichment & Information type classification (14 types) & Semantic metadata \\
+M10 & Claim Extraction & Rule-based extraction of key claims & Claim nodes \\
+M11 & Evidence Graph & Claim integration and relationship mapping & Evidence graph \\
+LLM-K & Knowledge Store & Direct LLM document comprehension & LLM-derived knowledge \\
+M12 & Query Interpretation & Intent detection and decomposition & Query representation \\
+M13-15 & Retrieval Pipeline & Bi-encoder, graph traversal, cross-encoder & Ranked evidence set \\
+M16-19 & Answer Generation & Evidence-bound LLM answer generation & Generated answer with citations \\
+ASL & Answer Selection & Dual-path fact extraction and scoring & Final selected answer \\
+M20 & Formatter & Citation linking and confidence scoring & Formatted response \\
+M21 & Suggestions & Context-aware follow-up generation & Suggested questions \\
+
+\end{longtable}
+
+% Technology Stack
+\clearpage
+\section{Technology Stack}
+
+LMDIS leverages state-of-the-art technologies across the entire processing pipeline:
+
+\begin{longtable}{@{}lp{5cm}p{5cm}@{}}
+\toprule
+\textbf{Layer} & \textbf{Technology} & \textbf{Purpose} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Layer} & \textbf{Technology} & \textbf{Purpose} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+Backend Framework & Python 3.13, FastAPI, Uvicorn & High-performance async API server \\
+Embedding Model & BAAI bge-large-en-v1.5 & 1024-dimensional semantic embeddings \\
+Cross Encoder & ms-marco-MiniLM-L-12-v2 & Evidence re-ranking for precision retrieval \\
+Vector Store & FAISS IndexFlatIP & Efficient similarity search \\
+Graph Engine & NetworkX DiGraph & Knowledge graph construction and traversal \\
+LLM Integration & OpenRouter, Google Gemini, Anthropic Claude & Multi-model LLM orchestration \\
+OCR Engine & PaddleOCR 3.4 with PyMuPDF & Scanned document text extraction \\
+PDF Parsing & pdfplumber, PyMuPDF & Lossless content extraction \\
+Frontend & HTML/CSS/JavaScript & Modern responsive interface \\
+Storage & JSON and Pickle serialization & Isolated document storage \\
+
+\end{longtable}
+
+% Key Capabilities
+\clearpage
+\section{Key Capabilities}
+
+\subsection{Lossless Structural Parsing}
+
+Preserves document layout, hierarchy, text formatting, table structures, and visual elements exactly as they appear in the source document. Adaptive extraction handles digital PDFs through PyMuPDF and pdfplumber, while scanned documents are processed through PaddleOCR with layout preservation.
+
+\subsection{Knowledge Graph Construction}
+
+Documents are transformed into directed graphs using NetworkX with 15+ edge types capturing semantic relationships, structural hierarchies, and cross-references. This graph representation enables sophisticated reasoning, traceability, and evidence-based query resolution.
+
+\subsection{Semantic Retrieval Engine}
+
+Replaces brittle keyword matching with embedding-based similarity search using BAAI bge-large-en-v1.5 (1024-dimensional vectors) indexed through FAISS. The retrieval pipeline combines bi-encoder search, graph traversal, and cross-encoder re-ranking for high-precision evidence extraction.
+
+\subsection{Evidence-Grounded Responses}
+
+Every answer is backed by verifiable source evidence with clear citations. The dual-path architecture generates answers from both the document knowledge graph and direct LLM reasoning, then arbitrates between them through a multi-signal Answer Selection Layer to ensure accuracy and prevent hallucinations.
+
+\subsection{Composite Confidence Scoring}
+
+Each citation carries a multi-factor confidence score blending:
+\begin{itemize}[leftmargin=*]
+    \item Semantic Alignment (40\%): Cosine similarity between citation text and query intent
+    \item OCR Quality (30\%): Confidence score from OCR extraction process
+    \item Cross-Encoder Relevance (20\%): Relevance score from re-ranking stage
+    \item Contribution Verification (10\%): Independent attribution by generation module
+\end{itemize}
+
+% Citation Engine
+\clearpage
+\section{Citation Engine}
+
+The citation engine provides transparent and verifiable source attribution for every claim in the generated answer. Citations are constructed from the cross-encoder re-ranked evidence pipeline rather than simple keyword matching, ensuring high-precision source linking.
+
+\subsection{Multi-Signal Citation Attribution}
+
+The citation selection employs four complementary attribution signals:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Unigram Overlap (25\%):} Content word matching between generated answer and evidence text
+    \item \textbf{Bigram Overlap (30\%):} Phrase-level attribution capturing multi-word concepts
+    \item \textbf{High-Value Token Overlap (25\%):} Matching of numbers, proper nouns, and abbreviations
+    \item \textbf{Retrieval Alignment Prior (20\%):} Score inherited from evidence retrieval pipeline
+\end{itemize}
+
+\subsection{Citation Metadata}
+
+Every citation includes:
+\begin{itemize}[leftmargin=*]
+    \item Source text excerpt with page number reference
+    \item Composite confidence score (0.0 to 1.0)
+    \item Information type classification (fact, definition, statistic, methodology, result)
+    \item Alignment score from the retrieval pipeline
+    \item Contribution flag indicating independent attribution
+\end{itemize}
+
+% API Reference
+\clearpage
+\section{API Reference}
+
+LMDIS exposes a RESTful API for programmatic access to all system capabilities:
+
+\begin{longtable}{@{}llp{5cm}p{3cm}@{}}
+\toprule
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Response} \\
+\midrule
+\endfirsthead
+
+\toprule
+\textbf{Method} & \textbf{Endpoint} & \textbf{Description} & \textbf{Response} \\
+\midrule
+\endhead
+
+\bottomrule
+\endfoot
+
+GET & \texttt{/} & System health check and status & System metadata \\
+GET & \texttt{/documents} & List all uploaded documents & Document array \\
+POST & \texttt{/documents/upload} & Upload and process PDF & Document ID \\
+GET & \texttt{/documents/\{id\}/status} & Check processing status & Status object \\
+POST & \texttt{/documents/\{id\}/query} & Query with natural language & Answer with citations \\
+GET & \texttt{/documents/\{id\}/suggestions} & Get follow-up questions & Question array \\
+GET & \texttt{/documents/\{id\}/structure} & Retrieve document structure & Structure tree \\
+
+\end{longtable}
+
+% Performance Characteristics
+\clearpage
+\section{Performance Characteristics}
+
+\subsection{Processing Time}
+
+Document processing time varies based on complexity and length:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Simple digital PDFs (10-50 pages):} 30 to 90 seconds
+    \item \textbf{Complex digital PDFs (50-200 pages):} 2 to 5 minutes
+    \item \textbf{Scanned documents (10-50 pages):} 2 to 4 minutes
+    \item \textbf{Large scanned documents (50-200 pages):} 5 to 15 minutes
+\end{itemize}
+
+\subsection{Query Response Time}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Simple factual queries:} 3 to 8 seconds
+    \item \textbf{Complex analytical queries:} 8 to 15 seconds
+    \item \textbf{Multi-aspect queries with graph traversal:} 10 to 20 seconds
+\end{itemize}
+
+\subsection{Resource Utilization}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Memory:} 1.3 GB for embedding model + 50-200 MB per 100 pages
+    \item \textbf{Storage:} 10-50 MB per 100 pages depending on content
+    \item \textbf{CPU:} Multi-core systems show significant performance improvements
+    \item \textbf{GPU:} Optional CUDA acceleration for embeddings and re-ranking
+\end{itemize}
+
+% Use Cases
+\clearpage
+\section{Use Cases}
+
+\subsection{Legal and Compliance Document Analysis}
+
+Analyze contracts, regulatory filings, and compliance documents with precise citation tracking. Extract obligations, deadlines, monetary terms, and compliance requirements with verifiable source attribution.
+
+\subsection{Financial Auditing and Reporting}
+
+Process financial statements, audit reports, and annual filings to extract financial metrics, performance indicators, and comparative analysis. Generate evidence-backed answers for audit queries with complete traceability.
+
+\subsection{Healthcare Record Processing}
+
+Analyze medical records, clinical trial reports, and research publications while maintaining data integrity. Extract patient information, treatment protocols, outcomes, and statistical findings with accurate citations.
+
+\subsection{Research and Academic Document Analysis}
+
+Process research papers, dissertations, and academic publications for literature review and knowledge synthesis. Extract methodologies, results, conclusions, and cross-references with academic rigor.
+
+\subsection{Enterprise Knowledge Management}
+
+Build searchable knowledge bases from corporate documentation, standard operating procedures, technical manuals, and policy documents. Enable employees to query organizational knowledge with source-verified answers.
+
+% Getting Started
+\clearpage
+\section{Getting Started}
+
+\subsection{Prerequisites}
+
+\begin{itemize}[leftmargin=*]
+    \item Python 3.13 or higher
+    \item Windows 10/11, Linux, or macOS
+    \item Minimum 4 GB RAM
+    \item 2 GB available disk space
+    \item Internet connection for API calls and model downloads
+    \item At least one LLM API key (OpenRouter, Google Gemini, or Anthropic Claude)
+\end{itemize}
+
+\subsection{Installation}
+
+\begin{verbatim}
+# Clone the repository
+git clone https://github.com/nihcastics/LMDIS-with-Graph-Guided-Evidence-Aware-Reasoning.git
+cd LMDIS-with-Graph-Guided-Evidence-Aware-Reasoning
+
+# Create virtual environment
+python -m venv .venv
+.venv\Scripts\activate  # Windows
+# or
+source .venv/bin/activate  # macOS/Linux
+
+# Install dependencies
+pip install -r backend/requirements.txt
+\end{verbatim}
+
+\subsection{Configuration}
+
+Set environment variables for API keys:
+
+\begin{verbatim}
+# Windows (PowerShell)
+$env:OPENROUTER_API_KEY="your_api_key_here"
+$env:GOOGLE_API_KEY="your_api_key_here"
+$env:ANTHROPIC_API_KEY="your_api_key_here"
+
+# macOS/Linux
+export OPENROUTER_API_KEY="your_api_key_here"
+export GOOGLE_API_KEY="your_api_key_here"
+export ANTHROPIC_API_KEY="your_api_key_here"
+\end{verbatim}
+
+\subsection{Running the System}
+
+\begin{verbatim}
+# Option 1: One-click launch (Windows)
+# Double-click start.bat
+
+# Option 2: Manual launch
+uvicorn backend.app.main:app --host 127.0.0.1 --port 8000
+
+# Option 3: Using launcher script
+python launcher.py
+\end{verbatim}
+
+Access the frontend at: \url{http://127.0.0.1:8000/frontend/index.html}
+
+% Roadmap
+\clearpage
+\section{Development Roadmap}
+
+\subsection{Planned Features}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Multi-Document Reasoning:} Cross-document linking and comparative analysis
+    \item \textbf{Performance Optimization:} Incremental processing and reduced memory footprint
+    \item \textbf{Enhanced OCR:} Handwritten text recognition and complex layout detection
+    \item \textbf{Real-Time Processing:} Streaming document processing and progressive query answering
+    \item \textbf{Enterprise Features:} Role-based access control, audit logging, API rate limiting
+    \item \textbf{Model Flexibility:} Pluggable embedding models and custom fine-tuning support
+\end{itemize}
+
+% Limitations
+\clearpage
+\section{Limitations}
+
+The current implementation has the following known limitations:
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Computational Requirements:} Large documents require significant processing time and memory
+    \item \textbf{OCR Quality Dependency:} Accuracy depends on input document quality for scanned content
+    \item \textbf{Single Document Scope:} Multi-document reasoning planned for future releases
+    \item \textbf{Model Download Requirements:} 1.5 GB model weights require internet connectivity for first run
+\end{itemize}
+
+% Contact and Repository
+\clearpage
+\section{Contact and Repository Information}
+
+\subsection{Primary Contacts}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Sachin S:} \url{sachin.shiva1612@gmail.com}
+    \item \textbf{Ayush Raj:} \url{ayushraj0901@gmail.com}
+\end{itemize}
+
+\subsection{GitHub Repository}
+
+\begin{itemize}[leftmargin=*]
+    \item \textbf{Repository:} \url{https://github.com/nihcastics/LMDIS-with-Graph-Guided-Evidence-Aware-Reasoning}
+    \item \textbf{Issues:} \url{https://github.com/nihcastics/LMDIS-with-Graph-Guided-Evidence-Aware-Reasoning/issues}
+    \item \textbf{Discussions:} \url{https://github.com/nihcastics/LMDIS-with-Graph-Guided-Evidence-Aware-Reasoning/discussions}
+\end{itemize}
+
+% License and Copyright
+\clearpage
+\section{License and Copyright}
+
+\subsection{GNU General Public License Version 3}
+
+This project is licensed under the GNU General Public License Version 3 (GPL 3.0). You are free to use, modify, and distribute this software under the terms of the license.
+
+\subsection{Copyright Notice}
+
+\textbf{Copyright \textcopyright\ 2026 Sachin S and Ayush Raj}
+
+This program is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with this program. If not, see \url{https://www.gnu.org/licenses/}.
+
+\subsection{Academic Use}
+
+LMDIS was developed as a capstone project demonstrating advanced document intelligence capabilities. Academic use, research applications, and educational deployments are encouraged.
+
+\vspace{2cm}
+
+\begin{center}
+    \rule{0.5\textwidth}{1pt}\\[0.5cm]
+    \textcolor{primary}{\textbf{End of Document}}\\[0.3cm]
+    \textcolor{darkgray}{\small LMDIS: Graph Guided Evidence Aware Reasoning for Enterprise Document Intelligence}\\[0.3cm]
+    \textcolor{darkgray}{\small Built with precision. Grounded in evidence. Designed for trust.}\\[0.3cm]
+    \textcolor{darkgray}{\small Copyright \textcopyright\ 2026 Sachin S and Ayush Raj. Licensed under GPL 3.0.}
+\end{center}
+
+\end{document}
