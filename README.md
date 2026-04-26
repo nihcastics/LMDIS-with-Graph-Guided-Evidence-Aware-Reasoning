@@ -8,9 +8,30 @@
 
 # LMDIS — Lossless Multimodal Document Intelligence System
 
+*Because documents deserve better than crushed pixels and forgotten tables.*
+
 A **21-module deterministic document intelligence pipeline** that transforms uploaded PDF documents into queryable knowledge graphs with evidence-grounded, citation-accurate answers.
 
 LMDIS ingests a PDF, performs lossless content extraction (text, tables, images, OCR), builds a semantically enriched knowledge graph, and serves natural-language queries with dual-path answer generation — one grounded in the document graph, the other via LLM reasoning — automatically arbitrated for accuracy.
+
+---
+
+## ✨ What Makes LMDIS Special?
+
+**Lossless structural parsing**  
+We preserve layout, hierarchy, text, tables, and visual elements exactly as they appear.
+
+**Multimodal processing**  
+Works with digital PDFs, scanned images, and hybrid documents using adaptive extraction (PyMuPDF, pdfplumber, PaddleOCR).
+
+**Graph based representation**  
+Documents become knowledge graphs (NetworkX) that capture relationships between components. This makes reasoning and traceability much smarter.
+
+**Semantic retrieval**  
+Forget brittle keyword matching. We use embedding based similarity (Sentence Transformers + FAISS) for context aware search.
+
+**Evidence grounded responses**  
+Every answer is backed by source documents with clear references. No hallucinations.
 
 ---
 
@@ -290,6 +311,46 @@ Environment variables (all optional — have working defaults):
 
 ---
 
+## Use Cases
+
+- Legal and compliance document analysis  
+- Financial auditing and reporting  
+- Healthcare record processing  
+- Research and academic document analysis  
+- Enterprise knowledge management  
+
+---
+
+## Limitations
+
+- Graph construction and semantic indexing are computationally heavy  
+- Performance depends on input document quality, especially for scanned pages  
+- Currently optimized for single document workflows (multi document reasoning is coming)
+
+---
+
+## Future Work
+
+- Multi document reasoning and cross document linking  
+- Performance optimization for large scale deployments  
+- Better OCR for noisy and handwritten inputs  
+- Real time processing capabilities  
+
+---
+
+## Contact
+
+Got questions, ideas, or just want to talk documents? Reach out:
+
+- **Sachin S** – sachin.shiva1612@gmail.com  
+- **Ayush Raj** – ayushraj0901@gmail.com
+
+---
+
 ## License
 
-Academic use. Capstone project — Lossless Multimodal Document Intelligence System.
+This project is for academic use. Capstone project — Lossless Multimodal Document Intelligence System.
+
+---
+
+*No black magic, just well structured documents and a bit of graph theory.*
